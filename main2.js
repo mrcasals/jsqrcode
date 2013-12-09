@@ -9,6 +9,16 @@ var localMediaStream = null;
 navigator.getUserMedia = navigator.getUserMedia ||
   navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
+videoElement.addEventListener('play', function(){
+  var $this = this;
+  (function loop(){
+    if(!$this.paused && !$this.ended) {
+      ctx.drawImage($this, 0, 0);
+      setTimeout(loop, 1000/30);
+    }
+  })();
+}, 0);
+
 function gotSources(sourceInfos) {
   for (var i = 0; i != sourceInfos.length; ++i) {
     var sourceInfo = sourceInfos[i];
