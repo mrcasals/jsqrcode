@@ -69,9 +69,6 @@ function start(){
     }
   };
   navigator.getUserMedia(constraints, successCallback, errorCallback);
-  if(localMediaStream){
-    ctx.drawImage(video, 0, 0);
-  }
 }
 
 audioSelect.onchange = start;
