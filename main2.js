@@ -52,7 +52,7 @@ if (typeof MediaStreamTrack === 'undefined'){
 
 function successCallback(stream) {
   window.stream = stream; // make stream available to console
-  videoElement. = window.URL.createObjectURL(stream);
+  videoElement.src = window.URL.createObjectURL(stream);
   localMediaStream = stream;
   videoElement.play();
 }
@@ -63,7 +63,7 @@ function errorCallback(error){
 
 function start(){
   if (!!window.stream) {
-    videoElement. = null;
+    videoElement.src = null;
     window.stream.stop();
   }
   var audioSource = audioSelect.value;
