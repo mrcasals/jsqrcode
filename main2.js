@@ -4,7 +4,6 @@ var videoSelect = document.querySelector("select#videoSource");
 var startButton = document.querySelector("button#start");
 var canvas = document.querySelector('canvas');
 var ctx = canvas.getContext('2d');
-var localMediaStream = null;
 
 navigator.getUserMedia = navigator.getUserMedia ||
   navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -45,7 +44,6 @@ if (typeof MediaStreamTrack === 'undefined'){
 function successCallback(stream) {
   window.stream = stream; // make stream available to console
   videoElement.src = window.URL.createObjectURL(stream);
-  localMediaStream = stream;
   videoElement.play();
 }
 
@@ -70,6 +68,11 @@ function start(){
   };
   navigator.getUserMedia(constraints, successCallback, errorCallback);
 }
+
+function decoded(data) {
+	alert(data);
+}
+qrcode.callback = decoded;
 
 audioSelect.onchange = start;
 videoSelect.onchange = start;
