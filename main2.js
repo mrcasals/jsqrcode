@@ -2,6 +2,9 @@ var videoElement = document.querySelector("video");
 var audioSelect = document.querySelector("select#audioSource");
 var videoSelect = document.querySelector("select#videoSource");
 var startButton = document.querySelector("button#start");
+var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
+var localMediaStream = null;
 
 navigator.getUserMedia = navigator.getUserMedia ||
   navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -33,6 +36,7 @@ if (typeof MediaStreamTrack === 'undefined'){
 function successCallback(stream) {
   window.stream = stream; // make stream available to console
   videoElement.src = window.URL.createObjectURL(stream);
+  localMediaStream = stream;
   videoElement.play();
 }
 
@@ -56,6 +60,9 @@ function start(){
     }
   };
   navigator.getUserMedia(constraints, successCallback, errorCallback);
+  if(localMediaStream){
+    ctx.drawImage(video, 0, 0);
+  }
 }
 
 audioSelect.onchange = start;
