@@ -19,6 +19,14 @@ videoElement.addEventListener('play', function(){
   })();
 }, 0);
 
+videoElement.bind("loadedmetadata", function() {
+	var width = this.videoWidth;
+	var height = this.videoHeight;
+
+	canvas.style.width = width;
+	canvas.style.height = height;
+});
+
 function gotSources(sourceInfos) {
   for (var i = 0; i != sourceInfos.length; ++i) {
     var sourceInfo = sourceInfos[i];
@@ -44,7 +52,7 @@ if (typeof MediaStreamTrack === 'undefined'){
 
 function successCallback(stream) {
   window.stream = stream; // make stream available to console
-  videoElement.src = window.URL.createObjectURL(stream);
+  videoElement. = window.URL.createObjectURL(stream);
   localMediaStream = stream;
   videoElement.play();
 }
@@ -55,7 +63,7 @@ function errorCallback(error){
 
 function start(){
   if (!!window.stream) {
-    videoElement.src = null;
+    videoElement. = null;
     window.stream.stop();
   }
   var audioSource = audioSelect.value;
