@@ -19,14 +19,6 @@ videoElement.addEventListener('play', function(){
   })();
 }, 0);
 
-videoElement.bind("loadedmetadata", function() {
-	var width = this.videoWidth;
-	var height = this.videoHeight;
-
-	canvas.style.width = width;
-	canvas.style.height = height;
-});
-
 function gotSources(sourceInfos) {
   for (var i = 0; i != sourceInfos.length; ++i) {
     var sourceInfo = sourceInfos[i];
@@ -55,6 +47,8 @@ function successCallback(stream) {
   videoElement.src = window.URL.createObjectURL(stream);
   localMediaStream = stream;
   videoElement.play();
+	canvas.style.width = videoElement.videoWidth;
+	canvas.style.height = videoElement.videoHeight;
 }
 
 function errorCallback(error){
