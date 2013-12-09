@@ -47,8 +47,6 @@ function successCallback(stream) {
   videoElement.src = window.URL.createObjectURL(stream);
   localMediaStream = stream;
   videoElement.play();
-	canvas.style.width = videoElement.videoWidth;
-	canvas.style.height = videoElement.videoHeight;
 }
 
 function errorCallback(error){
