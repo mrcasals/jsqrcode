@@ -33,6 +33,10 @@
   label {
     color: white;
   }
+
+  video {
+    display: none;
+  }
   </style>
 
 </head>
@@ -50,7 +54,7 @@
   </div>
 
   <video muted></video>
-  <canvas id="qr-canvas" width="300" height="300"></canvas>
+  <canvas id="qr-canvas" width="500" height="500"></canvas>
 
 	<button onclick="qrcode.decode()">Get the qr content!</button>
 
