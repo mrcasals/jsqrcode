@@ -14,6 +14,7 @@ videoElement.addEventListener('play', function(){
     if(!$this.paused && !$this.ended) {
       ctx.drawImage($this, 0, 0);
       setTimeout(loop, 1000/30);
+      qrcode.decode();
     }
   })();
 }, 0);
